@@ -64,7 +64,7 @@ function! neoterm#close(...)
     try
       if l:opts.force || !g:neoterm_keep_term_open
         exec printf('%sbdelete!', l:instance.buffer_id)
-      else
+      elseif bufwinnr(l:instance.buffer_id) > 0
         exec printf('%shide', bufwinnr(l:instance.buffer_id))
       end
 
